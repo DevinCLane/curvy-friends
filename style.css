@@ -1,3 +1,30 @@
+body {
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+h1 {
+    color: #333;
+}
+
+header {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+footer {
+    margin-top: auto;
+    color: #666;
+    font-size: 14px;
+}
+
 #canvas {
     position: absolute;
     top: 0;
@@ -7,23 +34,20 @@
 }
 
 #clearBtn {
-    position: absolute;
+    position: relative;
     z-index: 1;
-    top: 10px;
-    left: 10px;
-    padding: 5px 12px;
+    margin: 10px;
+    padding: 10px 20px;
     font-size: 16px;
-    cursor: pointer;
-    background-color: #3498db;
-    color: #fff;
+    font-weight: bold;
+    border-radius: 8px;
     border: none;
-    border-radius: 5px;
-}
-
-#clearBtn:hover {
-    background-color: #2980b9;
+    cursor: pointer;
+    background: linear-gradient(180deg, #4b91f7 0%, #367af6 100%);
+    color: #fff;
+    transition: background 0.3s ease-in-out;
 }
 
 #clearBtn:active {
-    background-color: #1f6798;
+    background: linear-gradient(180deg, #4b65f7 0%, #3646f6 100%);
 }
