@@ -23,6 +23,7 @@ footer {
     margin-top: auto;
     color: #666;
     font-size: 14px;
+    z-index: 1;
 }
 
 #canvas {
