@@ -1,7 +1,5 @@
 # Curvy Friends
 
-https://github.com/DevinCLane/curvy-friends/assets/8145785/0e451258-d5c8-4969-9f3d-6dd08fdde8ff
-
 Welcome. Immerse yourself in an enchanting world of particles that dance and bounce with every click. This dynamic art piece uses the [Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) and JavaScript to create an undulating sea of circles and quadratic curves.
 
 ## Features
