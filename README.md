@@ -2,7 +2,7 @@
 
 <img width="400" alt="Screenshot 2023-12-14 at 8 12 15 PM" src="https://github.com/DevinCLane/curvy-friends/assets/8145785/0a0a76fb-0ad9-4c0d-8f4a-f1efe7ae8cef">
 
-<video src="https://github.com/DevinCLane/curvy-friends/assets/8145785/bbe8c68f-1cfd-4a7a-9605-ce5d45b3ae41"></video>
+https://github.com/DevinCLane/curvy-friends/assets/8145785/bbe8c68f-1cfd-4a7a-9605-ce5d45b3ae41
 
 
 
