@@ -142,6 +142,8 @@ class Particle {
     }
 
     update() {
+        // call all the methods here to update the circles
+
         this.applyOscillation();
 
         this.randomDirectionChange();
@@ -163,6 +165,7 @@ class Particle {
     }
 }
 
+// initialize our particles and create a particle array
 function initParticles(n) {
     for (let i = 0; i < n; i++) {
         particleArray.push(new Particle());
@@ -171,14 +174,17 @@ function initParticles(n) {
 
 function handleParticles() {
     for (let i = 0; i < particleArray.length; i++) {
+        // draw and update each particle in the array
         particleArray[i].draw();
         particleArray[i].update();
 
+        // calculate distance of other particles
         for (let j = i + 1; j < particleArray.length; j++) {
             const dx = particleArray[i].x - particleArray[j].x;
             const dy = particleArray[i].y - particleArray[j].y;
             const distance = Math.hypot(dx, dy);
 
+            // draw a line if the particles are within a certain distance
             if (distance < 70) {
                 ctx.beginPath();
                 ctx.moveTo(particleArray[i].x, particleArray[i].y);
@@ -192,6 +198,7 @@ function handleParticles() {
             }
         }
 
+        // remove the particles if they are below a certain size
         if (particleArray[i].size <= 0.2) {
             particleArray.splice(i, 1);
             i--;
@@ -199,6 +206,7 @@ function handleParticles() {
     }
 }
 
+// animate everything
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     handleParticles();
