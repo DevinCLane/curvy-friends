@@ -37,10 +37,10 @@ canvas.addEventListener("click", (event) => {
 });
 
 // not currently using, but could have a trail of particles follow the mouse
-canvas.addEventListener("mousemove", (event) => {
-    mouse.x = event.x;
-    mouse.y = event.y;
-});
+// canvas.addEventListener("mousemove", (event) => {
+//     mouse.x = event.x;
+//     mouse.y = event.y;
+// });
 
 // store the particles in this array
 const particleArray = [];
@@ -51,8 +51,10 @@ class Particle {
         // define x and y coordinates
         this.x = mouse.x;
         this.y = mouse.y;
-        // size
+
+        // size of particles
         this.size = getRandomFloat(2, 60);
+
         // x and y speed
         this.speedX = getRandomFloat(-2, 2);
         this.speedY = getRandomFloat(-2, 2);
@@ -64,12 +66,13 @@ class Particle {
         this.oscillationAmplitudeY = getRandomFloat(0.1, 1.5);
         this.oscillationOffsetX = getRandomFloat(0, Math.PI * 2);
         this.oscillationOffsetY = getRandomFloat(0, Math.PI * 2);
+
         // current oscillation
         this.oscillationX = 0;
         this.oscillationY = 0;
     }
 
-    update() {
+    applyOscillation() {
         // Oscillation
         this.oscillationX =
             Math.sin(
@@ -83,36 +86,29 @@ class Particle {
         // apply oscillation
         this.x += this.oscillationX;
         this.y += this.oscillationY;
+    }
 
-        // collision detection of oscillation values before applying
-        // if (
-        //     this.x + this.oscillationX + this.size >= canvas.width ||
-        //     this.x - this.oscillationX - this.size <= 0
-        // ) {
-        //     this.oscillationSpeedX *= -1; // reverse the oscillation direction
-        // }
-
-        // if (
-        //     this.y + this.oscillationY + this.size >= canvas.height ||
-        //     this.y - this.oscillationY - this.size <= 0
-        // ) {
-        //     this.oscillationSpeedY *= -1; // reverse the oscillation direction
-        // }
-
+    randomDirectionChange() {
         // random direction change
-        const changeDirectionProbability = 0.01;
-        if (Math.random() < changeDirectionProbability) {
+        const directionChangeProbability = 0.02;
+        if (Math.random() < directionChangeProbability) {
             this.speedX = getRandomFloat(-2, 2);
             this.speedY = getRandomFloat(-2, 2);
         }
+    }
 
+    shrinkCircles() {
         // make the circles shrink
         if (this.size > 0.2) this.size -= getRandomFloat(-0.05, 0.15);
+    }
 
+    moveCircles() {
         // make the circles move
         this.x += this.speedX;
         this.y += this.speedY;
+    }
 
+    bounceOffWalls() {
         // collision detection (bounce off the walls)
         if (
             this.x + this.oscillationX + this.size >= canvas.width ||
@@ -126,7 +122,9 @@ class Particle {
         ) {
             this.speedY *= -1;
         }
+    }
 
+    constrainPosition() {
         // safety net to make sure particles don't actually go outside of canvas area
         this.x = Math.min(
             Math.max(this.x, this.size),
@@ -136,6 +134,20 @@ class Particle {
             Math.max(this.y, this.size),
             canvas.height - this.size
         );
+    }
+
+    update() {
+        this.applyOscillation();
+
+        this.randomDirectionChange();
+
+        this.shrinkCircles();
+
+        this.moveCircles();
+
+        this.bounceOffWalls();
+
+        this.constrainPosition();
     }
 
     draw() {
