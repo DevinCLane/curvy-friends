@@ -29,6 +29,11 @@ window.addEventListener("resize", () => {
     canvas.height = window.innerHeight;
 });
 
+// random float helper function
+function getRandomFloat(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
 // create a particle system where the user clicks their mouse on the canvas
 canvas.addEventListener("click", (event) => {
     mouse.x = event.x;
@@ -192,10 +197,6 @@ function handleParticles() {
             i--;
         }
     }
-}
-
-function getRandomFloat(min, max) {
-    return Math.random() * (max - min) + min;
 }
 
 function animate() {
