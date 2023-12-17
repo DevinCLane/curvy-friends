@@ -52,7 +52,7 @@ class Particle {
         this.x = mouse.x;
         this.y = mouse.y;
         // size
-        this.size = getRandomFloat(2, 70);
+        this.size = getRandomFloat(2, 60);
         // x and y speed
         this.speedX = getRandomFloat(-2, 2);
         this.speedY = getRandomFloat(-2, 2);
@@ -106,7 +106,7 @@ function handleParticles() {
             const dy = particleArray[i].y - particleArray[j].y;
             const distance = Math.hypot(dx, dy);
 
-            if (distance < 80) {
+            if (distance < 70) {
                 ctx.beginPath();
                 ctx.moveTo(particleArray[i].x, particleArray[i].y);
                 ctx.quadraticCurveTo(
