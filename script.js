@@ -71,7 +71,7 @@ class Particle {
         }
 
         // make the circles shrink
-        if (this.size > 0.2) this.size -= getRandomFloat(-0.01, 0.05);
+        if (this.size > 0.2) this.size -= getRandomFloat(-0.05, 0.15);
 
         // bounce off the walls
         if (this.x + this.size >= canvas.width || this.x - this.size <= 0) {
@@ -106,7 +106,7 @@ function handleParticles() {
             const dy = particleArray[i].y - particleArray[j].y;
             const distance = Math.hypot(dx, dy);
 
-            if (distance < 200) {
+            if (distance < 80) {
                 ctx.beginPath();
                 ctx.moveTo(particleArray[i].x, particleArray[i].y);
                 ctx.quadraticCurveTo(
