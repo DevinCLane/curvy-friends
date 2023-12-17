@@ -64,7 +64,7 @@ class Particle {
         this.y += this.speedY;
 
         // have the circles change direction randomly
-        const changeDirectionProbability = 0.005;
+        const changeDirectionProbability = 0.01;
         if (Math.random() < changeDirectionProbability) {
             this.speedX = getRandomFloat(-2, 2);
             this.speedY = getRandomFloat(-2, 2);
