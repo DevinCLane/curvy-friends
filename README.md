@@ -4,8 +4,6 @@
 
 https://github.com/DevinCLane/curvy-friends/assets/8145785/bbe8c68f-1cfd-4a7a-9605-ce5d45b3ae41
 
-
-
 Welcome. Immerse yourself in an enchanting world of particles that dance and bounce with every click. This dynamic art piece uses the [Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) and JavaScript to create an undulating sea of circles and quadratic curves.
 
 ## Features
@@ -35,6 +33,14 @@ Welcome. Immerse yourself in an enchanting world of particles that dance and bou
 -   Features a custom `Particle` class to manage the particle behavior
 -   Collision detection: bounces particles off the walls based on their x and y coordinates. (Ensures inclusion of the radius of the circle when calculating when to bounce the particle in the other direction.)
 -   Utilizes Pythagorean Theorem to calculate distance between particles and draw lines based on proximity
+-   Randomized direction change: change particle direction based on a percent probability.
+-   Sinusoidal motion: use sine and cosine to create an oscillating effect to the particle's motion.
+    ```JavaScript
+    this.x +=
+                Math.sin(
+                    Date.now() * this.oscillationSpeedX + this.oscillationOffsetX
+                ) * this.oscillationAmplitudeX;
+    ```
 
 ## Further Optimizations
 

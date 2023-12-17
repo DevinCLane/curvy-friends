@@ -56,14 +56,50 @@ class Particle {
         // x and y speed
         this.speedX = getRandomFloat(-2, 2);
         this.speedY = getRandomFloat(-2, 2);
+
+        // oscillation motion
+        this.oscillationSpeedX = getRandomFloat(0.0005, 0.009);
+        this.oscillationSpeedY = getRandomFloat(0.0005, 0.009);
+        this.oscillationAmplitudeX = getRandomFloat(0.1, 1.5);
+        this.oscillationAmplitudeY = getRandomFloat(0.1, 1.5);
+        this.oscillationOffsetX = getRandomFloat(0, Math.PI * 2);
+        this.oscillationOffsetY = getRandomFloat(0, Math.PI * 2);
+        // current oscillation
+        this.oscillationX = 0;
+        this.oscillationY = 0;
     }
 
     update() {
-        // make the circles move
-        this.x += this.speedX;
-        this.y += this.speedY;
+        // Oscillation
+        this.oscillationX =
+            Math.sin(
+                Date.now() * this.oscillationSpeedX + this.oscillationOffsetX
+            ) * this.oscillationAmplitudeX;
+        this.oscillationY =
+            Math.cos(
+                Date.now() * this.oscillationSpeedY + this.oscillationOffsetY
+            ) * this.oscillationAmplitudeY;
 
-        // have the circles change direction randomly
+        // apply oscillation
+        this.x += this.oscillationX;
+        this.y += this.oscillationY;
+
+        // collision detection of oscillation values before applying
+        // if (
+        //     this.x + this.oscillationX + this.size >= canvas.width ||
+        //     this.x - this.oscillationX - this.size <= 0
+        // ) {
+        //     this.oscillationSpeedX *= -1; // reverse the oscillation direction
+        // }
+
+        // if (
+        //     this.y + this.oscillationY + this.size >= canvas.height ||
+        //     this.y - this.oscillationY - this.size <= 0
+        // ) {
+        //     this.oscillationSpeedY *= -1; // reverse the oscillation direction
+        // }
+
+        // random direction change
         const changeDirectionProbability = 0.01;
         if (Math.random() < changeDirectionProbability) {
             this.speedX = getRandomFloat(-2, 2);
@@ -73,13 +109,33 @@ class Particle {
         // make the circles shrink
         if (this.size > 0.2) this.size -= getRandomFloat(-0.05, 0.15);
 
-        // bounce off the walls
-        if (this.x + this.size >= canvas.width || this.x - this.size <= 0) {
+        // make the circles move
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        // collision detection (bounce off the walls)
+        if (
+            this.x + this.oscillationX + this.size >= canvas.width ||
+            this.x + this.oscillationX - this.size <= 0
+        ) {
             this.speedX *= -1;
         }
-        if (this.y + this.size >= canvas.height || this.y - this.size <= 0) {
+        if (
+            this.y + this.oscillationY + this.size >= canvas.height ||
+            this.y + this.oscillationY - this.size <= 0
+        ) {
             this.speedY *= -1;
         }
+
+        // safety net to make sure particles don't actually go outside of canvas area
+        this.x = Math.min(
+            Math.max(this.x, this.size),
+            canvas.width - this.size
+        );
+        this.y = Math.min(
+            Math.max(this.y, this.size),
+            canvas.height - this.size
+        );
     }
 
     draw() {
