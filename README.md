@@ -54,3 +54,7 @@ Welcome. Immerse yourself in an enchanting world of particles that dance and bou
 -   Add audio: create generative audio that is informed by the data of the system.
 -   SVG export using [Canvas Sketch](https://github.com/mattdesl/canvas-sketch)
 -   User modifiable parameters via [Sketchbook](https://skbk.cc/#/)
+
+## Prior Art and Inspiration
+
+-   Developed, adapted, remixed from work by [Frank's Laboratory](https://youtu.be/Yvz_axxWG4Y?si=Qyb8dazwMFmjCSSN), and [The Coding Train](https://www.youtube.com/@TheCodingTrain)
